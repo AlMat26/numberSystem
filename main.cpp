@@ -1,9 +1,12 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
 void func () {
+
+    const char symvols [6] = { 'A', 'B', 'C', 'D', 'E' };
 
     int inputNumber;
     int outputNumberSystem;
@@ -12,19 +15,24 @@ void func () {
     cin >> outputNumberSystem;
 
     int remainder = inputNumber; //остаток
-    vector <int> outputNumber;
-
-    /*for ( unsigned int j = 0; j < outputNumber.size (); j++ ) {
-        outputNumber [j] = 0;
-    }*/
+    vector <string> outputNumber;
 
     while ( remainder >= outputNumberSystem ) {
 
         int priv = remainder / outputNumberSystem; //частное
-        outputNumber.push_back ( remainder%outputNumberSystem );
+
+        if ( remainder%outputNumberSystem < 10 ) {
+            outputNumber.push_back ( to_string( remainder%outputNumberSystem ) );
+        } else {
+            outputNumber.push_back ( to_string( symvols [ 10 - remainder%outputNumberSystem ] ) );
+        }
         remainder = priv;
     }
-    outputNumber.push_back (remainder);
+    if ( remainder < 10 ) {
+        outputNumber.push_back ( to_string (remainder) );
+    } else {
+        outputNumber.push_back ( to_string (symvols [ 10 - remainder ] ) );
+    }
 
     for ( int j = outputNumber.size() - 1; j >= 0; j-- ) {
         cout << outputNumber [j];
