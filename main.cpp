@@ -6,7 +6,7 @@ using namespace std;
 
 void func () {
 
-    const char symvols [6] = { 'A', 'B', 'C', 'D', 'E' };
+    const string symvols = "ABCDEF";
 
     int inputNumber;
     int outputNumberSystem;
@@ -24,14 +24,15 @@ void func () {
         if ( remainder%outputNumberSystem < 10 ) {
             outputNumber.push_back ( to_string( remainder%outputNumberSystem ) );
         } else {
-            outputNumber.push_back ( to_string( symvols [ 10 - remainder%outputNumberSystem ] ) );
+            outputNumber.push_back ( string ( 1, symvols [ remainder%outputNumberSystem - 10 ] ) );
+	    cout << symvols [ remainder%outputNumberSystem - 10 ]  << endl;
         }
         remainder = priv;
     }
     if ( remainder < 10 ) {
         outputNumber.push_back ( to_string (remainder) );
     } else {
-        outputNumber.push_back ( to_string (symvols [ 10 - remainder ] ) );
+        outputNumber.push_back ( string ( 1, symvols [ remainder - 10 ] ) );
     }
 
     for ( int j = outputNumber.size() - 1; j >= 0; j-- ) {
