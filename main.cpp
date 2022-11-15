@@ -25,7 +25,6 @@ void func () {
             outputNumber.push_back ( to_string( remainder%outputNumberSystem ) );
         } else {
             outputNumber.push_back ( string ( 1, symvols [ remainder%outputNumberSystem - 10 ] ) );
-	    cout << symvols [ remainder%outputNumberSystem - 10 ]  << endl;
         }
         remainder = priv;
     }
@@ -37,6 +36,7 @@ void func () {
 
     for ( int j = outputNumber.size() - 1; j >= 0; j-- ) {
         cout << outputNumber [j];
+	if ( j%4 == 0 ) cout << " ";
     }
     cout << endl;
 }
